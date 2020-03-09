@@ -91,13 +91,6 @@ STR_CONST \".*\"
 
 				
 }
-{STR_CONST}		{ 
-							for (int i=0; i<strlen(yytext); i++) yytext[i] = yytext[i+1];
-							yytext[strlen(yytext)-1] = '\0';
-							printf("\" \t QUOTA\n");
-							printf("%s \t STR_CONST\n", yytext); 
-							printf("\" \t QUOTA\n");
-						}
 
 
 %%

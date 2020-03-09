@@ -375,8 +375,8 @@ static void yy_fatal_error (yyconst char msg[]  );
 	*yy_cp = '\0'; \
 	(yy_c_buf_p) = yy_cp;
 
-#define YY_NUM_RULES 59
-#define YY_END_OF_BUFFER 60
+#define YY_NUM_RULES 58
+#define YY_END_OF_BUFFER 59
 /* This struct is not used in this scanner,
    but its presence is necessary. */
 struct yy_trans_info
@@ -386,10 +386,10 @@ struct yy_trans_info
 	};
 static yyconst flex_int16_t yy_accept[125] =
     {   0,
-        0,    0,    0,    0,   60,   59,   51,   50,   35,   18,
-        5,   59,   36,   37,    3,    1,   16,    2,    4,   47,
+        0,    0,    0,    0,   59,   58,   51,   50,   35,   18,
+        5,   58,   36,   37,    3,    1,   16,    2,    4,   47,
        17,    9,   27,    8,   49,   14,   15,   49,   49,   49,
-       49,   49,   49,   49,   49,   49,   49,   49,   38,   59,
+       49,   49,   49,   49,   49,   49,   49,   49,   38,   58,
        39,   56,   55,   56,   51,   13,    0,   57,   32,   33,
        30,    6,   28,    7,   29,   53,   52,   31,    0,   47,
        11,   12,   10,   49,   49,   49,   49,   49,   49,   49,
@@ -1145,21 +1145,10 @@ YY_RULE_SETUP
 	YY_BREAK
 case 58:
 YY_RULE_SETUP
-#line 94 "compiler_hw1.l"
-{ 
-							for (int i=0; i<strlen(yytext); i++) yytext[i] = yytext[i+1];
-							yytext[strlen(yytext)-1] = '\0';
-							printf("\" \t QUOTA\n");
-							printf("%s \t STR_CONST\n", yytext); 
-							printf("\" \t QUOTA\n");
-						}
-	YY_BREAK
-case 59:
-YY_RULE_SETUP
-#line 103 "compiler_hw1.l"
+#line 96 "compiler_hw1.l"
 ECHO;
 	YY_BREAK
-#line 1163 "lex.yy.c"
+#line 1152 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 case YY_STATE_EOF(C_Comment_Condition):
 	yyterminate();
@@ -2161,7 +2150,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 103 "compiler_hw1.l"
+#line 96 "compiler_hw1.l"
 
 
 
