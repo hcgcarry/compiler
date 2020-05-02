@@ -14,6 +14,7 @@
     #define CONCAT { strncat(buf, yytext, BUF_SIZE - strlen(buf) - 1); }
 %}
 
+/*"\n"        {CONCAT; printf("\n--------------%d:%s\n",yylineno,buf); strcpy(buf, "");return NEWLINE;}*/
 /* Define regular expression label */
 letter [a-zA-Z_]
 digit [0-9]
@@ -30,16 +31,16 @@ fnumber ({digit}*\.{digit}+)
 
 "/*"        {CONCAT; BEGIN(CMT); }
 <CMT>"*/"   {CONCAT; BEGIN(INITIAL); }
-<CMT>\n     {CONCAT;printf("%d: %s", yylineno, buf); strcpy(buf, "");}
+<CMT>\n     {CONCAT;strcpy(buf, "");}
 <CMT>.      {CONCAT;}
 
 "//".*      {CONCAT;}
 
 "\""        {CONCAT; BEGIN(STR);
-                return '"';
+                ;
             }
 <STR>"\""   {CONCAT; BEGIN(INITIAL);
-                return '"';
+                ;
             }
 <STR>[^\"]* {CONCAT; yylval.s_val = strdup(yytext);
                 return STRING_LIT;
@@ -80,7 +81,7 @@ fnumber ({digit}*\.{digit}+)
 
 ";"         {CONCAT; return ';'; }
 ","         {CONCAT; return ','; }
-"\n"        {CONCAT;  printf("%d: %s\n", yylineno, buf); strcpy(buf, "");return NEWLINE;}
+"\n"        {CONCAT;  strcpy(buf, "");return NEWLINE;}
 
 "print"     {CONCAT; return PRINT; }
 "println"   {CONCAT; return PRINTLN; }
@@ -99,7 +100,7 @@ fnumber ({digit}*\.{digit}+)
 {inumber}   {CONCAT; yylval.i_val = atoi(yytext);
                 return INT_LIT;
             }
-{fnumber}   {CONCAT; yylval.f_val = atoi(yytext); 
+{fnumber}   {CONCAT; yylval.f_val = atof(yytext); 
                 return FLOAT_LIT;
             }
 {id}        {
